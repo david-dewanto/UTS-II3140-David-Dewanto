@@ -1,4 +1,4 @@
-@media only screen and (max-width: 992px){
+@media only screen and (max-width: 700px){
   article{
     position: relative;
     top:3vw;
@@ -7,7 +7,7 @@
   h1{
     position:relative;
     display:flex;
-    margin:5vw 0 3vw 10vw;
+    margin:50vw 0 3vw 10vw;
     font-size:6vw;
   }
 
@@ -27,7 +27,7 @@
   }
 }
 
-@media only screen and (min-width:992px){
+@media only screen and (min-width:700px){
   article{
     position: relative;
     top:3vw;
