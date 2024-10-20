@@ -9,14 +9,11 @@ async function typeWriter() {
   const currentWord1 = txt1[wordIndex];
   const currentWord2 = txt2[wordIndex];
 
-  console.log(currentWord1.length);
-
   for (let i = 0; i < currentWord1.length; i++) {
     for (let a = 0; a<3; a++){
       document.getElementById("changing-text1").innerHTML = currentWord1.substring(0, i) + randomCharacter(1) + '<span class="cursor">|</span>';
       await sleep(speed/1.3);
     }
-    console.log(currentWord1.substring(0, i));
     document.getElementById("changing-text1").innerHTML = currentWord1.substring(0, i + 1);
   }
   
