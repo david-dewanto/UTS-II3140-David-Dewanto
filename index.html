@@ -7,9 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/header.css"> 
-    <link rel="stylesheet" href="css/article.css">   
+    <link rel="stylesheet" href="css/homepage/main.css">
+    <link rel="stylesheet" href="css/homepage/header.css"> 
+    <link rel="stylesheet" href="css/homepage/article.css">
+    <link rel="stylesheet" href="css/homepage/features.css">   
   </head>
   <body>
     <header>
@@ -24,11 +25,30 @@
       </nav>
     </header>
     <article>
-      <h1>Learn Python</h1>
-      <h2><span id="changing-text1"></span><span id="changing-text2"></span></h2>
+      <section>
+        <h1>Learn Python</h1>
+        <h2><span id="changing-text1"></span><span id="changing-text2"></span></h2>
+      </section>
+        
+      <section class="web-features">
+        <div id="feature-title"><h3>Learn Coding...</h3></div>
+
+        <div class="features">
+          <div id="feature-1">
+            <img src="assets/features-speedometer.svg" />
+            <p>... at your own pace</p>
+          </div>
+          <div id="feature-2">
+            <img src="assets/features-hand.svg" />
+            <p>... through an interactive way</p>
+          </div>
+          <div id="feature-3">
+            <img src="assets/features-money.svg" />
+            <p>... for 0 rupiah (it's free!)</p>
+          </div>
+        </div>
+      </section>
     </article>
-   
-  
   <script src="/scripts/typeWriter.js"></script>
   </body>
 </html>

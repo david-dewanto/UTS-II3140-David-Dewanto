@@ -7,14 +7,14 @@
   h1{
     position:relative;
     display:flex;
-    margin:5vw 0 10vw 6vw;
+    margin:5vw 0 3vw 10vw;
     font-size:6vw;
   }
 
   h2{
     position:relative;
     display:flex;
-    margin:2vh 0 3vh 14vw;
+    margin:1vh 0 3vh 14vw;
     font-size:7vw;
   }
 
