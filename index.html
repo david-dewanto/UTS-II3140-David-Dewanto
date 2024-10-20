@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="css/homepage/main.css">
     <link rel="stylesheet" href="css/homepage/header.css"> 
     <link rel="stylesheet" href="css/homepage/article.css">
-    <link rel="stylesheet" href="css/homepage/features.css">   
+    <link rel="stylesheet" href="css/homepage/features.css">
+    <link rel="stylesheet" href="css/homepage/tabs.css">
+    <link rel="stylesheet" href="css/homepage/footer.css">   
   </head>
   <body>
     <header>
@@ -31,7 +33,7 @@
       </section>
         
       <section class="web-features">
-        <div id="feature-title"><h3>Learn Coding...</h3></div>
+        <div id="feature-title"><h3>learn coding...</h3></div>
 
         <div class="features">
           <div id="feature-1">
@@ -48,7 +50,40 @@
           </div>
         </div>
       </section>
+
+    <section class="tabs">
+      <div id="tabs-title">
+        <h1>things you'll be learning</h2>
+      </div>
+      <div class="tabs-button-div">
+        <button class="tabs-button" id="tabs-button1" onClick="changeTab(0)">1st module</button>
+        <button class="tabs-button" id="tabs-button2" onClick="changeTab(1)">2nd module</button>
+        <button class="tabs-button" id="tabs-button3" onClick="changeTab(2)">3rd module</button>
+        <button class="tabs-button" id="tabs-button4" onClick="changeTab(3)">4th module</button>
+      </div>
+
+      <div id="content-div" class="">
+      </div>
+
     </article>
   <script src="/scripts/typeWriter.js"></script>
+  <script src="/scripts/tabs.js"></script>
+
+  <footer>
+    <div id="footer-logo-notes">
+      <div id="logo">
+        <a href="/"><img src="./assets/logo.svg"></img></a>
+      </div>
+      <div id="footer-notes">
+        <p>Pcademy is a interactive website offering people basic knowledge of Python, a popular programming language used all over the world.</p>
+        <p>Made by David Dewanto.</p>
+      </div>
+    </div>
+    <div id="footer-navigation">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/contact-us.html">Contact Us</a>
+    </div>
+  </footer>
   </body>
 </html>

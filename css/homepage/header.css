@@ -40,10 +40,11 @@
     padding:1vw 1vw 1vw 1vw;
     color: black;
     text-decoration-line: none;
+    background-color: #FAFFA4;
   }
 
   .header-nav a[href="/account/exercise.html"]:hover{
-    background-color: #FAFFA4;
+    background-color: #d5d5d5;
     color:black;
   }
 
@@ -99,11 +100,12 @@
     padding:10px 10px 10px 10px;
     color: black;
     text-decoration-line: none;
+    background-color: #FAFFA4;
   }
 
   .header-nav a[href="/account/exercise.html"]:hover{
-    background-color: #FAFFA4;
     color:black;
+    background-color: #d5d5d5;
   }
 
   
