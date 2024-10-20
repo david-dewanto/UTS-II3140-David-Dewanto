@@ -19,7 +19,8 @@
     white-space:nowrap;
   }
 
-  h2 span{
+  #changing-text2{
+    margin-left:5vw;
     text-decoration: underline;
     text-underline-offset: 40px;
     font-weight: 600;

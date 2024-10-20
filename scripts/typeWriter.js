@@ -1,28 +1,39 @@
-var i = 0;
 var wordIndex = 0;
-var txt = ['Fun Way', 'Free Way', 'Easy Way', 'Interactively'];
-var speed = 100;
-var cursorSpeed = 400;
+var firstWord = false;
+var txt1 = ["The ", 'At ', 'For ', 'At ', 'From ']
+var txt2 = ['Fun Way','Your Own Pace','Free', 'Anytime', 'Anywhere'];
+var speed = 75;
+var cursorSpeed = 300;
 
+async function typeWriter() {
+  const currentWord1 = txt1[wordIndex];
+  const currentWord2 = txt2[wordIndex];
 
+  console.log(currentWord1.length);
 
-function typeWriter() {
-  const currentWord = txt[wordIndex];
-  
-  if (i < currentWord.length) {
-    for (let a = 0; a<5; a++){
-      document.getElementById("changing-text").innerHTML = currentWord.substring(0, i + 1) + randomCharacter(2) + '<span class="cursor">|</span>';
+  for (let i = 0; i < currentWord1.length; i++) {
+    for (let a = 0; a<3; a++){
+      document.getElementById("changing-text1").innerHTML = currentWord1.substring(0, i) + randomCharacter(1) + '<span class="cursor">|</span>';
+      await sleep(speed/1.3);
     }
-    document.getElementById("changing-text").innerHTML = currentWord.substring(0, i + 1) + '<span class="cursor">|</span>';
-    i++;
-    setTimeout(typeWriter, speed);
-  } else {
-    setTimeout(() => {
-      i = 0;
-      wordIndex = (wordIndex + 1) % txt.length;
-      typeWriter();
-    }, 2000);
+    console.log(currentWord1.substring(0, i));
+    document.getElementById("changing-text1").innerHTML = currentWord1.substring(0, i + 1);
   }
+  
+  for (let i = 0; i < currentWord2.length; i++) {
+    for (let a = 0; a<3; a++){
+      document.getElementById("changing-text2").innerHTML = currentWord2.substring(0, i) + randomCharacter(1) + '<span class="cursor">|</span>';
+      await sleep(speed);
+    }
+    document.getElementById("changing-text2").innerHTML = currentWord2.substring(0, i+1) + '<span class="cursor">|</span>';
+  }
+
+  setTimeout(() => {
+    wordIndex = (wordIndex + 1) % txt2.length;
+    document.getElementById("changing-text1").innerHTML = '';
+    document.getElementById("changing-text2").innerHTML = '';
+    typeWriter();
+  }, 3250);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -49,3 +60,6 @@ function randomCharacter(length) {
   return result;
 }
 
+function sleep(delay){
+  return new Promise((resolve) => setTimeout(resolve, delay))
+}
