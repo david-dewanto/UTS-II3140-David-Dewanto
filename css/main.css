@@ -4,3 +4,7 @@
   font-style: normal;
   background-color: #F6F6F6;
 }
+
+html{
+  scroll-behavior: smooth;
+}

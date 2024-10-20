@@ -1,0 +1,27 @@
+@media only screen and (min-width:769px){
+  article{
+    position: relative;
+    top:50px;
+  }
+
+  h1{
+    position:relative;
+    display:flex;
+    margin:100px 10vw 20px 20vw;
+    font-size:80px;
+  }
+
+  h2{
+    position:relative;
+    display:flex;
+    margin:10px 10vw 20px 25vw;
+    font-size:100px;
+    white-space:nowrap;
+  }
+
+  h2 span{
+    text-decoration: underline;
+    text-underline-offset: 40px;
+    font-weight: 600;
+  }
+}
