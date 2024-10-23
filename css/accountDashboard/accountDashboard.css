@@ -1,0 +1,165 @@
+section h1 {
+  font-size: 3vw;
+  background-color: #faffa4;
+  line-height: 4vw;
+  padding: 2vw;
+}
+
+section span {
+  background-color: #faffa4;
+}
+
+.welcome-message {
+  display: flex;
+  justify-content: center;
+}
+
+header img {
+  width: 15vw;
+}
+
+header a {
+  display: flex;
+  justify-content: center;
+  margin: 3vw 0 2.5vw 0;
+}
+
+.modules {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 40% 20% 40%;
+}
+
+.modules h2 {
+  overflow: hidden; 
+  border: solid 0.15vw black;
+}
+
+.modules h2 a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 2vw 0;
+  box-sizing: border-box;
+  background: transparent; 
+  position: relative; 
+  color: black; 
+  text-decoration: none;
+  z-index: 1;
+}
+
+.modules h2 a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+  background-color: #faffa4; 
+  transform: translateX(-100%); 
+  transition: transform 2s ease; 
+  z-index: -2; 
+}
+
+.active-module:hover::before {
+  transform: translateX(0); 
+}
+
+#module-1 {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+#module-2 {
+  display: flex;
+  grid-column: 4;
+}
+
+#module-3 {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+#module-4 {
+  grid-column: 4;
+  grid-row: 3;
+}
+
+footer {
+  margin: 5vw 0 0 0 !important;
+}
+
+.restricted-module{
+  cursor:not-allowed;
+}
+
+.warning-message{
+  z-index: 9999;
+  display: flex;
+  background-color: #ff7d7d;
+  position:fixed;
+  font-size:1.3vw;
+  top:5%;
+  padding:0.5vw 1vw;
+  color:white;
+  border:solid 0.15vw black;
+  margin: 0 auto;
+  left:50%;
+  transform: translate(-50%,-50%);
+  white-space: nowrap;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  visibility: hidden;
+  opacity:0;
+}
+
+.warning-message.show{
+  visibility:visible;
+  opacity:1;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.warning-message span{
+  background-color: #ff7d7d;
+
+}
+
+.warning-message button{
+  font-size:1.3vw;
+  border:transparent;
+  margin-left: 1vw;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+}
+
+@media only screen and (max-width:700px){
+  header a img{
+    width:40vw;
+  }
+
+  .welcome-message h1{
+    font-size:5vw;
+  }
+
+  .modules h2 a{
+    font-size:4vw;
+  }
+
+  #footer-navigation{
+    margin: 25vh 0 0 0;
+  }
+
+  .warning-message{
+    font-size:3.5vw;
+    text-wrap:wrap;
+    width:90%;
+    box-sizing: border-box;
+  }
+
+  .warning-message button{
+    font-size: 4vw;
+  }
+}
+

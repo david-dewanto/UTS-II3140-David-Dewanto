@@ -16,6 +16,7 @@ footer{
 #footer-notes p{
   margin:0vw 5vw 0vw 5vw;
   text-align: justify;
+  align-items: center;
   font-size:1.2vw
 }
 
@@ -38,7 +39,7 @@ footer{
   text-decoration-color: transparent;
   transition: text-decoration-color 0.5s ease;
   color:black;
-  font-size:2vw;
+  font-size:1.5vw;
 }
 
 #footer-navigation a:hover{
