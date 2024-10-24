@@ -10,7 +10,7 @@ function setActiveModules(){
   for(const element of activeModules){
     let temp = document.querySelector(`#module-${element} a`);
     temp.classList.add("active-module");
-    temp.setAttribute("href","/account/exercise/module1.html");
+    temp.setAttribute("href",`/account/exercise/module${element}.html`);
   }
 
   let nonActiveModules = availableModules.filter(i => !activeModules.includes(i));
@@ -37,4 +37,3 @@ document.addEventListener("DOMContentLoaded", () => {
   getUserName();
   setActiveModules();
 });
-
