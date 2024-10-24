@@ -258,8 +258,8 @@ function checkDragAndDrop(contentData) {
 document.addEventListener("DOMContentLoaded", () => {
   const contentKey = `${activePart}_${subsetActivePart}`;
   setContent(content[contentKey]);
-  setActivePart();
   checkMobile();
+  setActivePart();
 });
 
 function changeWarningMessage(warningMessage) {
@@ -299,6 +299,7 @@ function checkMobile() {
 
     container3.style.fontSize = "2vw";
     container4.style.width = "17vw";
+    setActivePart();
   }
 }
 
