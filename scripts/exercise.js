@@ -236,6 +236,7 @@ function checkDragAndDrop(contentData) {
     ?.querySelectorAll(".code-block");
 
   if (!droppedBlocks || droppedBlocks.length === 0) {
+    changeWarningMessage("Wrong Answer ☹️, Please Try Again");
     showWarning();
     return false;
   }
