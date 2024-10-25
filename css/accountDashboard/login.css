@@ -45,16 +45,38 @@ body{
 }
 
 .google-btn img {
-  width: 18px;
-  height: 18px;
-  margin-right: 10px;
+  width: 4vw;
+  margin-right: 2vw;
   background-color: white;
+  transition: background-color 0.3s;
+}
+
+.google-btn:hover img {
+  background-color: #f8f9fa;
 }
 
 .google-btn span {
   color: #3c4043;
-  font-weight: 500;
-  font-size: 14px;
+  font-size: 2vw;
+  font-weight:600;
   background-color: white;
+  transition: background-color 0.3s;
 }
 
+.google-btn:hover span {
+  background-color: #f8f9fa;
+}
+
+@media only screen and (max-width:700px){
+  .login-container h1{
+    font-size:8vw;
+  }
+
+  .google-btn span{
+    font-size:5vw;
+  }
+
+  .google-btn img{
+    width:6vw;
+  }
+}

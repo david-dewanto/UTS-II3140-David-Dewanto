@@ -35,7 +35,7 @@
     padding-top: 5vw;
   }
 
-  .header-nav a[href="/account/account-dashboard.html"] {
+  .header-nav a[href="/account/checklogin.html"] {
     border: 2px solid black;
     padding: 1vw 1vw 1vw 1vw;
     color: black;
@@ -43,7 +43,7 @@
     background-color: #faffa4;
   }
 
-  .header-nav a[href="/account/account-dashboard.html"]:hover {
+  .header-nav a[href="/account/checklogin.html"]:hover {
     background-color: #d5d5d5;
     color: black;
   }
@@ -92,7 +92,7 @@
     height: auto;
   }
 
-  .header-nav a[href="/account/account-dashboard.html"] {
+  .header-nav a[href="/account/checklogin.html"] {
     margin-left: 100px;
     border: 2px solid black;
     padding: 10px 10px 10px 10px;
@@ -102,7 +102,7 @@
     transition: background-color 0.5s ease;
   }
 
-  .header-nav a[href="/account/account-dashboard.html"]:hover {
+  .header-nav a[href="/account/checklogin.html"]:hover {
     color: black;
     background-color: #d5d5d5;
     box-shadow: 0 0 10vw 1vw#faffa4;

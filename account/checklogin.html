@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading...</title>
+    <link rel="stylesheet" href="/css/reusable/main.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .loader-container {
+        text-align: center;
+      }
+
+      .loader {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 5px solid black;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px auto;
+      }
+
+      .loading-text {
+        color: #333;
+        animation: fadeInOut 1.5s ease-in-out infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fadeInOut {
+        0%,
+        100% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      @media only screen and (max-width: 600px) {
+        .loader {
+          width: 20vw;
+          height: 20vh;
+        }
+
+        .loading-text {
+          font-size: 4vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader-container">
+      <div class="loader"></div>
+      <p class="loading-text">Loading...</p>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+      import {
+        getAuth,
+        GoogleAuthProvider,
+        signInWithPopup,
+      } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyA50buZYQIaMFqQRwhj-J-OqvLLvnM2b_s",
+        authDomain: "uts-david-dewanto.firebaseapp.com",
+        projectId: "uts-david-dewanto",
+        storageBucket: "uts-david-dewanto.appspot.com",
+        messagingSenderId: "1062084535351",
+        appId: "1:1062084535351:web:f0f24d3b8c3b7ea2e84bb2",
+        measurementId: "G-VDEJ575Y5C",
+      };
+
+      var userDemo;
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+      auth.languageCode = "en";
+      const provider = new GoogleAuthProvider();
+
+
+
+      auth.onAuthStateChanged(async (user) => {
+        if (user) {
+        window.location.href = "/account/account-dashboard.html";
+        localStorage.setItem('username', user.displayName); 
+        }else{
+          window.location.href = "/account/login.html";
+        }
+      });
+      
+
+    </script>
+  </body>
+</html>

@@ -10,8 +10,10 @@
   </head>
   <body>
     <div class="warning-message">
-      <span>Module is Not Yet Unlocked, Please Finish Earlier Modules First!</span>
-      <button onClick="closeWarning()">x</button>
+      <span
+        >Module is Not Yet Unlocked, Please Finish Earlier Modules First!</span
+      >
+      <button id="warning-close-btn">x</button>
     </div>
 
     <header>
@@ -21,9 +23,11 @@
     <section>
       <article class="welcome-message">
         <h1>Welcome Back, <span id="user-id"></span> !</h1>
-        <script src="/scripts/accountDashboard.js"></script>
       </article>
 
+      <div class="logout-container">
+        <button id="logout-btn">logout</button>
+      </div>
       <article class="modules">
         <h2 id="module-1"><a>Module 1</a></h2>
         <h2 id="module-2"><a>Module 2</a></h2>
@@ -51,5 +55,6 @@
         <a href="/contact-us.html">Contact Us</a>
       </div>
     </footer>
+    <script type="module" src="/scripts/accountDashboard.js"></script>
   </body>
 </html>

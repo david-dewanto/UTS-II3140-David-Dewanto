@@ -278,7 +278,7 @@ function checkMobile() {
     container.innerHTML = "";
 
     let finalHTML = `<article class="course-title">
-          <h1 style="font-size:5vw; text-align:center; padding-top:15vh;">This Courses Cannot be Taken On A Mobile Screen, </br>Please Change to A Bigger Screen</h1>
+          <h1 style="font-size:5vw; text-align:center; padding-top:15vh;">This Course Cannot be Taken On A Mobile Screen, </br>Please Change to A Bigger Screen</h1>
         </article>`;
 
     container.innerHTML = finalHTML;
