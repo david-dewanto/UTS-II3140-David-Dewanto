@@ -77,6 +77,8 @@ header a img{
 
 .progress-bar li{
   padding: 1vh 2vw;
+  font-size:1.2vw;
+  font-weight:600;
 }
 
 
@@ -90,6 +92,7 @@ header a img{
   position:relative;
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
+  box-sizing: border-box;
 }
 
 .course-title h1{
@@ -110,12 +113,14 @@ header a img{
 }
 
 .content-button{
+  position:absolute;
+  top: 87%;
+  box-sizing: border-box;
   display:flex;
   width:20vw;
-  height:5vh;
+  height:4.5vh;
   justify-content: space-around;
   background-color: rgb(218, 218, 218);
-  padding: 2vh 0;
 }
 
 .content-button button{
@@ -123,7 +128,7 @@ header a img{
   border-color:solid rgb(0, 0, 0);
   border-width: 0.2vw;
   box-sizing: border-box;
-  width:8vw;
+  width:7vw;
   transition: background-color 0.5s ease;
 }
 
@@ -143,7 +148,7 @@ mark {
 
 .tooltip-text {
   visibility: hidden;
-  width: 25vw; 
+  min-width: 25vw; 
   background-color: #555;
   color: #fff;
   text-align: center;
@@ -166,7 +171,6 @@ mark {
   position: absolute;
   top: 100%;
   left: 50%;
-  margin-left: -5px; 
   border-width: 5px;
   border-style: solid;
   border-color: #555 transparent transparent transparent;
