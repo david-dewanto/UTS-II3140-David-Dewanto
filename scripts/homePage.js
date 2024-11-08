@@ -110,6 +110,7 @@ function changeTab(selectedIndex) {
 
 document.addEventListener("DOMContentLoaded", () => {
   changeTab(0);
+  sayHello();
 });
 
 
