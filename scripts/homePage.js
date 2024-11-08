@@ -111,3 +111,14 @@ function changeTab(selectedIndex) {
 document.addEventListener("DOMContentLoaded", () => {
   changeTab(0);
 });
+
+
+async function sayHello() {
+  try {
+      const response = await fetch('https://your-django-app.vercel.app/hello');
+      const data = await response.json();  // for JSON response
+      console.log(data);  // Will log: {message: "Hello, David!"}
+  } catch (error) {
+      console.error('Error:', error);
+  }
+}
