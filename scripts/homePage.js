@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function sayHello() {
   try {
-      const response = await fetch('https://uts-david-dewanto-back-end.vercel.app/sample/helloworld');
+      const response = await fetch('https://uts-david-dewanto-back-end.vercel.app/user/helloworld');
       const data = await response.json();  // for JSON response
       console.log(data);  // Will log: {message: "Hello, David!"}
   } catch (error) {
