@@ -15,24 +15,72 @@
     <link rel="stylesheet" href="/css/reusable/header.css" />
   </head>
   <body>
-    <script type="module" src="/scripts/main.js"></script>
     <header>
       <a href="/" id="header-logo">
         <img src="/assets/logo.svg" width="200" height="auto" />
       </a>
-
       <nav class="header-nav">
         <p class="main-header"><a href="/about.html">About</a></p>
         <p class="main-header"><a href="/contact-us.html">Contact Us</a></p>
       </nav>
     </header>
     <section class="login-container">
-      <h1>Login to Your Existing Account 👨‍🦱👩‍🦰</h1>
-      <button class="google-btn" id ="google-login-btn">
-        <img src="/assets/google_icon.svg" alt="Google logo">
-        <span>Sign in with Google</span>
-    </button>
+      <h1>Login to Your Account 👨‍🦱👩‍🦰</h1>
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        <button type="submit" class="submit-button">Sign In</button>
+      </form>
+      <p class="register-link">
+        Don't have an account? <a href="register.html">Register here</a>
+      </p>
+
+      <p class="forgot-password-link">
+        <a href="#" id="forgotPasswordLink">Reset Your Password Here</a>
+      </p>
     </section>
 
+    <div class="forgot-password-container">
+      
+      
+      <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Reset Password</h2>
+          <form id="forgotPasswordForm">
+            <div class="input-group">
+              <label for="resetEmail">Email</label>
+              <input
+                type="email"
+                name="resetEmail"
+                id="resetEmail"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <button type="submit" class="submit-button">Send Reset Link</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/scripts/main.js"></script>
   </body>
 </html>
