@@ -78,9 +78,15 @@
     </div>
 
     <script type="module">
-      window.location.href = "/account/login.html";
+      function checkLogin(){
+        if (sessionStorage.getItem("token")){
+          window.location.href = "account-dashboard.html";
+        }else{
+          window.location.href = "/account/login.html";
+        }
+      }
       
-
+      checkLogin();
     </script>
   </body>
 </html>

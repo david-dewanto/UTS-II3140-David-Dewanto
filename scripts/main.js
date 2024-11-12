@@ -1,6 +1,7 @@
 import { backendURL } from "./url.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+
   const loginForm = document.getElementById("loginForm");
 
   if (loginForm) {
@@ -29,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Response data:", data);
 
         if (data.status === "success") {
-          localStorage.setItem("token", data.token);
+          sessionStorage.setItem("token", data.token);
           window.location.href = "account-dashboard.html";
         } else {
           alert("Login failed: " + data.message);
