@@ -102,6 +102,7 @@ footer {
 
 .restricted-module{
   cursor:not-allowed;
+  background-color: #d5d5d5 !important;
 }
 
 .warning-message{
