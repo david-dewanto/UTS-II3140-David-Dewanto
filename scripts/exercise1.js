@@ -202,8 +202,6 @@ function setContent(contentData) {
   if (contentData.type === "drag-and-drop") {
     initializeDragAndDrop();
     
-    console.log(maxActivePart, activePart, maxActiveSubpart, activeSubpart)
-
     if ((maxActivePart == 4 && maxActiveSubpart == 3)||((maxActivePart != activePart || maxActiveSubpart != activeSubpart) && (maxActivePart >= activePart))) {
       autoArrangeDragAndDrop();
     }
@@ -291,10 +289,10 @@ async function forwardSubsetActivePart() {
   setContent(content["loader"]);
   activeSubpart += 1;
 
-  if (maxActiveSubpart < activeSubpart) {
+  if (maxActiveSubpart < activeSubpart && maxActivePart < activePart) {
     maxActivePart = activePart;
     maxActiveSubpart = activeSubpart;
-    await saveUserProgress(thisModule, activePart, activeSubpart);
+    await saveUserProgress(thisModule, maxActivePart, maxActiveSubpart);
   }
 
   if (activePart == 4 && activeSubpart == 3) {
@@ -339,7 +337,7 @@ async function forwardActivePart() {
   if (maxActivePart < activePart) {
     maxActivePart = activePart;
     maxActiveSubpart = activeSubpart;
-    await saveUserProgress(thisModule, activePart, activeSubpart);
+    await saveUserProgress(thisModule, maxActivePart, maxActiveSubpart);
   }
 
   const contentKey = `${activePart}_${activeSubpart}`;

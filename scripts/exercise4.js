@@ -292,7 +292,7 @@ async function forwardSubsetActivePart() {
   setContent(content["loader"]);
   activeSubpart += 1;
 
-  if (maxActiveSubpart < activeSubpart) {
+  if (maxActiveSubpart < activeSubpart && maxActivePart < activePart) {
     maxActivePart = activePart;
     maxActiveSubpart = activeSubpart;
     await saveUserProgress(thisModule, activePart, activeSubpart);
