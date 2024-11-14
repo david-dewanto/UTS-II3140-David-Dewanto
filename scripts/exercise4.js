@@ -32,12 +32,12 @@ const content = {
   // Module 1: Introduction to Functions
   "1_1": {
     header: "Understanding Functions in Python 🔧",
-    text: "Welcome to Functions! Functions are reusable blocks of code that perform specific tasks.<br/><br/>Key concepts:<br/>• <mark>def keyword<span class='tooltip-text'>Used to define functions</span></mark><br/>• <mark>parameters<span class='tooltip-text'>Input values for functions</span></mark><br/>• <mark>return values<span class='tooltip-text'>Output from functions</span></mark>",
+    text: "Welcome to Functions! Functions are reusable blocks of code that perform specific tasks.<br/><br/>• <mark>def keyword<span class='tooltip-text'>Used to define functions</span></mark><br/>• <mark>parameters<span class='tooltip-text'>Input values for functions</span></mark><br/>• <mark>return values<span class='tooltip-text'>Output from functions</span></mark>",
     type: "text-only",
   },
   "1_2": {
     header: "Function Components 📝",
-    text: "Every function has these parts:<br/><br/>• Function name (lowercase, with underscores)<br/>• Parameters (optional)<br/>• Docstring (documentation)<br/>• Function body (indented code)<br/>• Return statement (optional)",
+    text: "Every function has these parts:<br/>• Function name (lowercase, with underscores)<br/>• Parameters (optional)<br/>• Docstring (documentation)<br/>• Function body (indented code)<br/>• Return statement (optional)",
     type: "text-only",
   },
   "1_3": {
@@ -106,7 +106,7 @@ const content = {
   "4_3": {
     header: "Congratulations! 🎉",
     type: "text-only",
-    text: "You've mastered the basics of:<br/><br/>• Creating functions and procedures<br/>• Working with return values<br/>• Understanding matrix operations<br/>• Combining functions with matrices<br/><br/>Keep practicing these concepts!",
+    text: "You've mastered the basics of:<br/><br/>• Creating functions and procedures<br/>• Working with return values<br/>• Understanding matrix operations<br/>• Combining functions with matrices<br/>",
   },
   "loader": {
     type: "loader"
@@ -204,11 +204,8 @@ function setContent(contentData) {
 
   if (contentData.type === "drag-and-drop") {
     initializeDragAndDrop();
-    
-    const currentPart = parseInt(Object.keys(content).find(key => content[key] === contentData)?.split('_')[0]);
-    const currentSubpart = parseInt(Object.keys(content).find(key => content[key] === contentData)?.split('_')[1]);
-    
-    if (maxActivePart > currentPart || (maxActivePart === currentPart && maxActiveSubpart > currentSubpart)) {
+        
+    if (maxActivePart >= activePart && maxActiveSubpart >= activeSubpart) {
       autoArrangeDragAndDrop();
     }
   }

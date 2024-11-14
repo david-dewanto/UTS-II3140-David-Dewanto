@@ -201,11 +201,8 @@ function setContent(contentData) {
 
   if (contentData.type === "drag-and-drop") {
     initializeDragAndDrop();
-    
-    const currentPart = parseInt(Object.keys(content).find(key => content[key] === contentData)?.split('_')[0]);
-    const currentSubpart = parseInt(Object.keys(content).find(key => content[key] === contentData)?.split('_')[1]);
-    
-    if (maxActivePart > currentPart || (maxActivePart === currentPart && maxActiveSubpart > currentSubpart)) {
+        
+    if (maxActivePart >= activePart && maxActiveSubpart >= activeSubpart) {
       autoArrangeDragAndDrop();
     }
   }

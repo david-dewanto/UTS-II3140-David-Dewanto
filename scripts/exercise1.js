@@ -201,11 +201,8 @@ function setContent(contentData) {
 
   if (contentData.type === "drag-and-drop") {
     initializeDragAndDrop();
-    
-    const currentPart = parseInt(Object.keys(content).find(key => content[key] === contentData)?.split('_')[0]);
-    const currentSubpart = parseInt(Object.keys(content).find(key => content[key] === contentData)?.split('_')[1]);
-    
-    if (maxActivePart > currentPart || (maxActivePart === currentPart && maxActiveSubpart > currentSubpart)) {
+        
+    if (maxActivePart >= activePart && maxActiveSubpart >= activeSubpart) {
       autoArrangeDragAndDrop();
     }
   }
@@ -275,7 +272,7 @@ function getDragAfterElement(container, y) {
 
 async function forwardSubsetActivePart() {
   const contentKeyTest = `${activePart}_${activeSubpart}`;
-  
+
   if (content[contentKeyTest].type === "drag-and-drop") {
     if (
       !checkDragAndDrop(content[contentKeyTest] && window.innerWidth > 1000)
