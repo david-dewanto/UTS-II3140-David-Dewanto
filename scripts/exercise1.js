@@ -201,7 +201,9 @@ function setContent(contentData) {
 
   if (contentData.type === "drag-and-drop") {
     initializeDragAndDrop();
-        
+    
+    console.log(maxActivePart, activePart, maxActiveSubpart, activeSubpart)
+
     if ((maxActivePart == 4 && maxActiveSubpart == 3)||((maxActivePart != activePart || maxActiveSubpart != activeSubpart) && (maxActivePart >= activePart))) {
       autoArrangeDragAndDrop();
     }
