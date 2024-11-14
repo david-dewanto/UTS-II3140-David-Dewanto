@@ -274,31 +274,42 @@ function getDragAfterElement(container, y) {
 }
 
 async function forwardSubsetActivePart() {
+  const contentKeyTest = `${activePart}_${activeSubpart}`;
+  
+  if (content[contentKeyTest].type === "drag-and-drop") {
+    if (
+      !checkDragAndDrop(content[contentKeyTest] && window.innerWidth > 1000)
+    ) {
+      return;
+    }
+  }
+
   if (activeSubpart === 3) {
     forwardActivePart();
-  } else {
-    const contentKeyTest = `${activePart}_${activeSubpart}`;
-    if (content[contentKeyTest].type === "drag-and-drop") {
-      if (
-        !checkDragAndDrop(content[contentKeyTest] && window.innerWidth > 1000)
-      ) {
-        return;
-      }
-    }
-    setContent(content["loader"]);
-    activeSubpart += 1;
+    return;
+  } 
+    
+  setContent(content["loader"]);
+  activeSubpart += 1;
 
-    if (maxActiveSubpart < activeSubpart) {
-      maxActivePart = activePart;
-      maxActiveSubpart = activeSubpart;
-      await saveUserProgress(activeModule, activePart, activeSubpart);
-    }
-
-    const contentKey = `${activePart}_${activeSubpart}`;
-    setContent(content[contentKey]);
-    if (activePart == 4 && activeSubpart == 3) saveUserProgress(2, 1, 1);
+  if (maxActiveSubpart < activeSubpart) {
+    maxActivePart = activePart;
+    maxActiveSubpart = activeSubpart;
+    await saveUserProgress(thisModule, activePart, activeSubpart);
   }
+
+  if (activePart == 4 && activeSubpart == 3) {
+    saveUserProgress(2, 1, 1);
+    changeWarningMessage(
+      "Congratulation, Now You Can Go to The Next Module (Go The Dashboard and Choose Module)"
+    );
+    showWarning("#99ff7d");
+  }
+
+  const contentKey = `${activePart}_${activeSubpart}`;
+  setContent(content[contentKey]);
 }
+
 
 function backSubsetActivePart() {
   if (activeSubpart === 1) {
@@ -317,9 +328,6 @@ async function forwardActivePart() {
       "Congratulation, Now You Can Go to The Next Module (Go The Dashboard and Choose Module)"
     );
     showWarning("#99ff7d");
-    saveUserProgress(2, 1, 1);
-    console.log(activePart);
-    setActivePart();
     return;
   }
 
@@ -332,7 +340,7 @@ async function forwardActivePart() {
   if (maxActivePart < activePart) {
     maxActivePart = activePart;
     maxActiveSubpart = activeSubpart;
-    await saveUserProgress(activeModule, activePart, activeSubpart);
+    await saveUserProgress(thisModule, activePart, activeSubpart);
   }
 
   const contentKey = `${activePart}_${activeSubpart}`;

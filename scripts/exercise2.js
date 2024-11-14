@@ -49,7 +49,7 @@ const content = {
   // Module 2: While Loops
   "2_1": {
     header: "While Loops Explained 🔁",
-    text: 'A while loop repeats code as long as a condition is True. Think of it like saying "Keep doing this WHILE something is true".<br/><br/>The basic syntax is:<br/><mark>while condition:<span class="tooltip-text">while True:\n    print("Hello")</span></mark><br/><br/>The code inside the loop will keep running until the condition becomes False.',
+    text: 'A while loop repeats code as long as a condition is True. Think of it like saying "Keep doing this WHILE something is true".<br/><br/>The basic syntax is: <mark>while (condition):<span class="tooltip-text">while (True):\n    print("Hello")</span></mark><br/><br/>The code inside the loop will keep running until the condition becomes False.',
     type: "text-only",
   },
   "2_2": {
@@ -103,7 +103,7 @@ const content = {
   "4_3": {
     header: "Congratulations! 🎉",
     type: "text-only",
-    text: "You've completed the loops module! You now understand:<br/><br/>• How while loops work<br/>• How for loops work<br/>• When to use each type of loop<br/><br/>Keep practicing and experimenting with different types of loops!",
+    text: "You've completed the loops module! You now understand:<br/><br/>• How while loops work<br/>• How for loops work<br/>• When to use each type of loop<br/>",
   },
   "loader": {
     type: "loader"
@@ -274,31 +274,41 @@ function getDragAfterElement(container, y) {
 }
 
 async function forwardSubsetActivePart() {
+  const contentKeyTest = `${activePart}_${activeSubpart}`;
+
+  if (content[contentKeyTest].type === "drag-and-drop") {
+    if (
+      !checkDragAndDrop(content[contentKeyTest] && window.innerWidth > 1000)
+    ) {
+      return;
+    }
+  }
   if (activeSubpart === 3) {
     forwardActivePart();
-  } else {
-    const contentKeyTest = `${activePart}_${activeSubpart}`;
-    if (content[contentKeyTest].type === "drag-and-drop") {
-      if (
-        !checkDragAndDrop(content[contentKeyTest] && window.innerWidth > 1000)
-      ) {
-        return;
-      }
-    }
-    setContent(content["loader"]);
-    activeSubpart += 1;
+    return;
+  } 
+    
+  setContent(content["loader"]);
+  activeSubpart += 1;
 
-    if (maxActiveSubpart < activeSubpart) {
-      maxActivePart = activePart;
-      maxActiveSubpart = activeSubpart;
-      await saveUserProgress(activeModule, activePart, activeSubpart);
-    }
-
-    const contentKey = `${activePart}_${activeSubpart}`;
-    setContent(content[contentKey]);
-    if (activePart == 4 && activeSubpart == 3) saveUserProgress(2, 1, 1);
+  if (maxActiveSubpart < activeSubpart) {
+    maxActivePart = activePart;
+    maxActiveSubpart = activeSubpart;
+    await saveUserProgress(thisModule, activePart, activeSubpart);
   }
+
+  if (activePart == 4 && activeSubpart == 3) {
+    saveUserProgress(3, 1, 1);
+    changeWarningMessage(
+      "Congratulation, Now You Can Go to The Next Module (Go The Dashboard and Choose Module)"
+    );
+    showWarning("#99ff7d");
+  }
+
+  const contentKey = `${activePart}_${activeSubpart}`;
+  setContent(content[contentKey]);
 }
+
 
 function backSubsetActivePart() {
   if (activeSubpart === 1) {
@@ -317,9 +327,6 @@ async function forwardActivePart() {
       "Congratulation, Now You Can Go to The Next Module (Go The Dashboard and Choose Module)"
     );
     showWarning("#99ff7d");
-    saveUserProgress(2, 1, 1);
-    console.log(activePart);
-    setActivePart();
     return;
   }
 
@@ -332,7 +339,7 @@ async function forwardActivePart() {
   if (maxActivePart < activePart) {
     maxActivePart = activePart;
     maxActiveSubpart = activeSubpart;
-    await saveUserProgress(activeModule, activePart, activeSubpart);
+    await saveUserProgress(thisModule, activePart, activeSubpart);
   }
 
   const contentKey = `${activePart}_${activeSubpart}`;

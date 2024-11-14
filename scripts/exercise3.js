@@ -72,7 +72,7 @@ const content = {
   // Module 3: Strings
   "3_1": {
     header: "Understanding Strings 📝",
-    text: "Strings are sequences of characters in Python. They can be created with single or double quotes.<br/><br/>Key features:<br/>• <mark>Immutable<span class='tooltip-text'>Cannot be changed after creation</span></mark><br/>• <mark>Indexed<span class='tooltip-text'>Can access individual characters</span></mark><br/>• <mark>Sliceable<span class='tooltip-text'>Can extract portions</span></mark>",
+    text: "Strings are sequences of characters in Python. They can be created with single or double quotes.<br/><br/>• <mark>Immutable<span class='tooltip-text'>Cannot be changed after creation</span></mark><br/>• <mark>Indexed<span class='tooltip-text'>Can access individual characters</span></mark><br/>• <mark>Sliceable<span class='tooltip-text'>Can extract portions</span></mark>",
     type: "text-only",
   },
   "3_2": {
@@ -106,7 +106,7 @@ const content = {
   "4_3": {
     header: "Congratulations! 🎉",
     type: "text-only",
-    text: "You've completed the basics of Python variables, lists, and strings! You now understand:<br/><br/>• How to create and use variables<br/>• Working with lists (arrays)<br/>• String operations and methods<br/><br/>Keep practicing these fundamentals!",
+    text: "You've completed the basics of Python variables, lists, and strings! You now understand:<br/><br/>• How to create and use variables<br/>• Working with lists (arrays)<br/>• String operations and methods<br/>",
   },
   "loader": {
     type: "loader"
@@ -277,30 +277,40 @@ function getDragAfterElement(container, y) {
 }
 
 async function forwardSubsetActivePart() {
+  const contentKeyTest = `${activePart}_${activeSubpart}`;
+
+  if (content[contentKeyTest].type === "drag-and-drop") {
+    if (
+      !checkDragAndDrop(content[contentKeyTest] && window.innerWidth > 1000)
+    ) {
+      return;
+    }
+  }
+
   if (activeSubpart === 3) {
     forwardActivePart();
-  } else {
-    const contentKeyTest = `${activePart}_${activeSubpart}`;
-    if (content[contentKeyTest].type === "drag-and-drop") {
-      if (
-        !checkDragAndDrop(content[contentKeyTest] && window.innerWidth > 1000)
-      ) {
-        return;
-      }
-    }
-    setContent(content["loader"]);
-    activeSubpart += 1;
+    return;
+  } 
 
-    if (maxActiveSubpart < activeSubpart) {
-      maxActivePart = activePart;
-      maxActiveSubpart = activeSubpart;
-      await saveUserProgress(activeModule, activePart, activeSubpart);
-    }
+  setContent(content["loader"]);
+  activeSubpart += 1;
 
-    const contentKey = `${activePart}_${activeSubpart}`;
-    setContent(content[contentKey]);
-    if (activePart == 4 && activeSubpart == 3) saveUserProgress(2, 1, 1);
+  if (maxActiveSubpart < activeSubpart) {
+    maxActivePart = activePart;
+    maxActiveSubpart = activeSubpart;
+    await saveUserProgress(thisModule, activePart, activeSubpart);
   }
+  
+  if (activePart == 4 && activeSubpart == 3) {
+    saveUserProgress(4, 1, 1);
+    changeWarningMessage(
+      "Congratulation, Now You Can Go to The Next Module (Go The Dashboard and Choose Module)"
+    );
+    showWarning("#99ff7d");
+  }
+
+  const contentKey = `${activePart}_${activeSubpart}`;
+  setContent(content[contentKey]);
 }
 
 function backSubsetActivePart() {
@@ -320,9 +330,6 @@ async function forwardActivePart() {
       "Congratulation, Now You Can Go to The Next Module (Go The Dashboard and Choose Module)"
     );
     showWarning("#99ff7d");
-    saveUserProgress(2, 1, 1);
-    console.log(activePart);
-    setActivePart();
     return;
   }
 
@@ -335,7 +342,7 @@ async function forwardActivePart() {
   if (maxActivePart < activePart) {
     maxActivePart = activePart;
     maxActiveSubpart = activeSubpart;
-    await saveUserProgress(activeModule, activePart, activeSubpart);
+    await saveUserProgress(thisModule, activePart, activeSubpart);
   }
 
   const contentKey = `${activePart}_${activeSubpart}`;
