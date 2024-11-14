@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Module 4</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="/css/reusable/main.css" />
+    <link rel="stylesheet" href="/css/exercise/exercise.css" />
+    <link
+      rel="stylesheet"
+      href="/semantic/dist/components/loader.css"
+    />
+  </head>
+  <body>
+    <div class="warning-message">
+      <span>Wrong Answer ☹️, Please Try Again</span>
+      <button id="close-btn">x</button>
+    </div>
+    <header>
+      <div class="back-to-account">
+        <button onClick="location.href='/account/account-dashboard.html'">
+          &lt; Go Back
+        </button>
+      </div>
+      <a href="/"><img src="/assets/logo.svg" /></a>
+    </header>
+
+    <section id="container"></section>
+
+    <section class="progress-bar-section">
+      <ul class="progress-bar">
+        <li class="step">Part 1</li>
+        <li class="step">Part 2</li>
+        <li class="step">Part 3</li>
+        <li class="step">Part 4</li>
+      </ul>
+    </section>
+
+    <script type="module" src="/scripts/exercise4.js"></script>
+    <script src="/semantic/dist/semantic.min.js"></script>
+  </body>
+</html>

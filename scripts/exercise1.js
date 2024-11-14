@@ -2,7 +2,7 @@ import { backendURL } from "./url.js";
 
 let activePart;
 let activeSubpart;
-let maxPart;
+let maxPart = 4;
 let maxActivePart;
 let maxActiveSubpart;
 let activeModule;
@@ -16,7 +16,7 @@ async function initializeExercise() {
       activePart = initialDataResponse.progress.part;
       activeSubpart = initialDataResponse.progress.subpart;
       activeModule = initialDataResponse.progress.module;
-      if (activeModule > thisModule){
+      if (activeModule > thisModule) {
         activePart = 4;
         activeSubpart = 3;
       }
@@ -24,7 +24,7 @@ async function initializeExercise() {
       maxActiveSubpart = activeSubpart;
     }
   } catch (error) {
-    console.error('Error initializing exercise:', error);
+    console.error("Error initializing exercise:", error);
   }
 }
 
@@ -76,8 +76,8 @@ const content = {
     header: "Let's Practice Variables!",
     type: "drag-and-drop",
     code1: 'name = "John" #1',
-    code2: 'age = 25 #2',
-    code3: 'height = 1.75 #3',
+    code2: "age = 25 #2",
+    code3: "height = 1.75 #3",
     code4: 'print(f"Name: {name}, Age: {age}, Height: {height}m") #4',
   },
   "3_3": {
@@ -95,8 +95,8 @@ const content = {
   "4_2": {
     header: "Try These Operations!",
     type: "drag-and-drop",
-    code1: 'x = 10 #1',
-    code2: 'y = 5 #2',
+    code1: "x = 10 #1",
+    code2: "y = 5 #2",
     code3: 'print(f"Sum: {x + y}, Product: {x * y}") #3',
     code4: 'print(f"Is x greater? {x > y}") #4',
   },
@@ -105,6 +105,9 @@ const content = {
     type: "text-only",
     text: "You now understand basic operations in Python! </br> </br> You're making excellent progress in your Python journey!",
   },
+  "loader":{
+    type: "loader"
+  }
 };
 
 function setActivePart() {
@@ -115,10 +118,38 @@ function setActivePart() {
   allStep[activePart - 1].classList.add("active");
 }
 
+function autoArrangeDragAndDrop() {
+  const codeBlocks = document.querySelectorAll('.code-block');
+  const dropArea = document.querySelector('.droppable-area');
+  
+  if (!dropArea || !codeBlocks.length) return;
+  
+  const sortedBlocks = Array.from(codeBlocks).sort((a, b) => {
+    return parseInt(a.getAttribute('data-order')) - parseInt(b.getAttribute('data-order'));
+  });
+  
+  sortedBlocks.forEach(block => {
+    dropArea.appendChild(block);
+  });
+}
+
 function setContent(contentData) {
   const container = document.querySelector("#container");
   container.innerHTML = "";
   let finalhtml = "";
+
+  if (contentData.type === "loader") {
+    finalhtml = `
+    <div class="ui segment">
+      <div class="ui active inverted dimmer">
+        <div class="ui text loader" style="background-color : rgb(218, 218, 218);">Loading</div>
+      </div>
+    <p></p>
+    </div>
+    `;
+    container.innerHTML = finalhtml;
+    return;
+  }
 
   if (contentData.type === "text-only") {
     finalhtml = `
@@ -170,6 +201,13 @@ function setContent(contentData) {
 
   if (contentData.type === "drag-and-drop") {
     initializeDragAndDrop();
+    
+    const currentPart = parseInt(Object.keys(content).find(key => content[key] === contentData)?.split('_')[0]);
+    const currentSubpart = parseInt(Object.keys(content).find(key => content[key] === contentData)?.split('_')[1]);
+    
+    if (maxActivePart > currentPart || (maxActivePart === currentPart && maxActiveSubpart > currentSubpart)) {
+      autoArrangeDragAndDrop();
+    }
   }
 }
 
@@ -241,21 +279,24 @@ async function forwardSubsetActivePart() {
   } else {
     const contentKeyTest = `${activePart}_${activeSubpart}`;
     if (content[contentKeyTest].type === "drag-and-drop") {
-      if (!checkDragAndDrop(content[contentKeyTest] && window.innerWidth > 1000)) {
+      if (
+        !checkDragAndDrop(content[contentKeyTest] && window.innerWidth > 1000)
+      ) {
         return;
       }
     }
+    setContent(content["loader"]);
     activeSubpart += 1;
 
-    if(maxActiveSubpart < activeSubpart){
+    if (maxActiveSubpart < activeSubpart) {
       maxActivePart = activePart;
       maxActiveSubpart = activeSubpart;
       await saveUserProgress(activeModule, activePart, activeSubpart);
-    } 
+    }
 
     const contentKey = `${activePart}_${activeSubpart}`;
     setContent(content[contentKey]);
-    if(activePart == 4 && activeSubpart == 3) saveUserProgress(2, 1, 1);
+    if (activePart == 4 && activeSubpart == 3) saveUserProgress(2, 1, 1);
   }
 }
 
@@ -270,18 +311,25 @@ function backSubsetActivePart() {
 }
 
 async function forwardActivePart() {
+
   if (activePart === maxPart) {
-    changeWarningMessage("Congratulation, Now You Can Go to The Next Module (Go The Dashboard and Choose Module)");
+    changeWarningMessage(
+      "Congratulation, Now You Can Go to The Next Module (Go The Dashboard and Choose Module)"
+    );
     showWarning("#99ff7d");
-    saveUserProgress(2,1,1);
+    saveUserProgress(2, 1, 1);
+    console.log(activePart);
+    setActivePart();
     return;
   }
+
+  setContent(content["loader"]);
 
   activePart += 1;
   activeSubpart = 1;
   setActivePart();
-  
-  if(maxActivePart < activePart){
+
+  if (maxActivePart < activePart) {
     maxActivePart = activePart;
     maxActiveSubpart = activeSubpart;
     await saveUserProgress(activeModule, activePart, activeSubpart);
@@ -306,10 +354,10 @@ function showWarning(color) {
   const warningMessage = document.querySelector(".warning-message");
   warningMessage?.classList.add("show");
   warningMessage.style.backgroundColor = color;
-  if (color == "#ff7d7d"){
+  if (color == "#ff7d7d") {
     warningMessage.style.color = "white";
-  }else{
-    warningMessage.style.color = "black;"
+  } else {
+    warningMessage.style.color = "black;";
   }
   const warningMessageSpan = document.querySelector(".warning-message span");
   warningMessageSpan.style.backgroundColor = color;
@@ -352,109 +400,124 @@ function changeWarningMessage(warningMessage) {
 }
 
 async function checkMobile() {
-  await initializeExercise();
+  try {
 
-  const container2 = document.querySelector(".progress-bar");
-  const container3 = document.querySelector(".back-to-account button");
-  const container4 = document.querySelector("header a img");
+    const isMobile = () => {
+      const userAgent = navigator.userAgent.toLowerCase();
+      const mobileKeywords = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+      const hasOrientation = typeof window.orientation !== 'undefined';
+      const platform = navigator.platform.toLowerCase();
+      const mobilePlatforms = /android|iphone|ipod|ipad/i;
+      const windowWidth = window.innerWidth;
+      const hasSmallScreen = windowWidth < 700;
+      
+      return mobileKeywords.test(userAgent) || hasOrientation || mobilePlatforms.test(platform) ||hasSmallScreen;
+    };
 
-  if (window.innerWidth < 1000) {
     const container = document.querySelector("#container");
-    if (container) {
-      container.innerHTML = `<article class="course-title">
-        <h1 style="font-size:5vw; text-align:center; padding-top:15vh;">This Course Cannot be Taken On A Mobile Screen, </br>Please Change to A Bigger Screen</h1>
-      </article>`;
-    }
+    const container2 = document.querySelector(".progress-bar");
+    const container3 = document.querySelector(".back-to-account button");
+    const container4 = document.querySelector("header a img");
 
-    if (container2) container2.innerHTML = "";
-    if (container3) container3.style.fontSize = "4vw";
-    if (container4) container4.style.width = "30vw";
-  } else {
-    const contentKey = `${window.activePart}_${window.activeSubpart}`;
-    if (content[contentKey]) {
-      setContent(content[contentKey]);
-    }
-    
-    if (container2) {
-      container2.innerHTML = `
-        <li class="step">Part 1</li>
-        <li class="step">Part 2</li>
-        <li class="step">Part 3</li>
-        <li class="step">Part 4</li>
-      `;
-    }
+    if (isMobile()) {
+      if (container) {
+        container.innerHTML = `<article class="course-title">
+          <h1 style="font-size:5vw; text-align:center; padding-top:15vh;">This Course Cannot be Taken On A Mobile Screen, </br>Please Change to A Bigger Screen</h1>
+        </article>`;
+      }
 
-    if (container3) container3.style.fontSize = "2vw";
-    if (container4) container4.style.width = "17vw";
-    setActivePart();
+      if (container2) container2.innerHTML = "";
+      if (container3) container3.style.fontSize = "4vw";
+      if (container4) container4.style.width = "30vw";
+    } else {
+      const contentKey = `${activePart}_${activeSubpart}`;
+      if (content[contentKey] && container) {
+        setContent(content[contentKey]);
+      }
+
+      if (container2) {
+        container2.innerHTML = `
+          <li class="step">Part 1</li>
+          <li class="step">Part 2</li>
+          <li class="step">Part 3</li>
+          <li class="step">Part 4</li>
+        `;
+      }
+
+      if (container3) container3.style.fontSize = "2vw";
+      if (container4) container4.style.width = "17vw";
+      setActivePart();
+    }
+  } catch (error) {
+    console.error('Error in checkMobile:', error);
   }
 }
-
-window.addEventListener("resize", checkMobile);
 
 async function saveUserProgress(module, part, subpart) {
   const token = await checkAuth();
   if (!token) return;
-  
+
   try {
-      const response = await fetch(backendURL + `user/saveProgress/`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify({
-              module,
-              part,
-              subpart,
-              timestamp: new Date().toISOString()
-          })
-      });
-      return await response.json();
+    const response = await fetch(backendURL + `user/saveProgress/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        module,
+        part,
+        subpart,
+        timestamp: new Date().toISOString(),
+      }),
+    });
+    return await response.json();
   } catch (error) {
-      console.error('Error saving progress:', error);
-      throw error;
+    console.error("Error saving progress:", error);
+    throw error;
   }
 }
 
 async function getUserProgress() {
   const token = await checkAuth();
   if (!token) return;
-  
+
   try {
-      const response = await fetch(backendURL + `user/getProgress/`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify({
-              timestamp: new Date().toISOString()
-          })
-      });
-      
-      const data = await response.json();
-      if (data.status === 'success') {
-          console.log('User progress:', data.progress);
-      }
-      return data;
+    const response = await fetch(backendURL + `user/getProgress/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        timestamp: new Date().toISOString(),
+      }),
+    });
+
+    const data = await response.json();
+  
+    return data;
   } catch (error) {
-      console.error('Error getting progress:', error);
-      throw error;
+    console.error("Error getting progress:", error);
+    throw error;
   }
 }
 
 async function checkAuth() {
-  const token = sessionStorage.getItem('token');
+  const token = sessionStorage.getItem("token");
   if (!token) {
-      window.location.href = '/account/login.html';
-      return false;
+    window.location.href = "/account/login.html";
+    return false;
   }
   return token;
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  window.addEventListener("resize", checkMobile);
+
   try {
+    setContent(content["loader"]);
+
     await initializeExercise();
 
     const contentKey = `${activePart}_${activeSubpart}`;
@@ -466,11 +529,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error(`Content not found for key: ${contentKey}`);
     }
 
-    const closeButton = document.querySelector('#close-btn');
+    const closeButton = document.querySelector("#close-btn");
     if (closeButton) {
-      closeButton.addEventListener('click', closeWarning);
+      closeButton.addEventListener("click", closeWarning);
     }
   } catch (error) {
-    console.error('Error in DOMContentLoaded:', error);
+    console.error("Error in DOMContentLoaded:", error);
   }
 });

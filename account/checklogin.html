@@ -21,6 +21,18 @@
         min-height: 100vh;
       }
 
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
       .loader-container {
         text-align: center;
       }
@@ -61,12 +73,12 @@
 
       @media only screen and (max-width: 600px) {
         .loader {
-          width: 20vw;
-          height: 20vh;
+          width: 15vmin;
+          height: 15vmin;
         }
 
         .loading-text {
-          font-size: 4vw;
+          font-size: 4vmin;
         }
       }
     </style>
@@ -78,14 +90,14 @@
     </div>
 
     <script type="module">
-      function checkLogin(){
-        if (sessionStorage.getItem("token")){
+      function checkLogin() {
+        if (sessionStorage.getItem("token")) {
           window.location.href = "account-dashboard.html";
-        }else{
+        } else {
           window.location.href = "/account/login.html";
         }
       }
-      
+
       checkLogin();
     </script>
   </body>

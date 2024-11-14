@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script type="module" src="/scripts/accountDashboard.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pcademy - Account</title>
@@ -14,51 +15,145 @@
     <link rel="stylesheet" href="/css/reusable/footer.css" />
     <link rel="stylesheet" href="/css/accountDashboard/accountDashboard.css" />
   </head>
-  <body>
-    <div class="warning-message">
-      <span>Module is Not Yet Unlocked, Please Finish Earlier Modules First!</span>
-      <button class="close-warning">×</button>
+  <body class="loading-active">
+    <style>
+      body.loading-active {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .loader-container {
+        text-align: center;
+      }
+
+      .loader {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 5px solid black;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px auto;
+      }
+
+      .loading-text {
+        color: #333;
+        animation: fadeInOut 1.5s ease-in-out infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fadeInOut {
+        0%,
+        100% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      @media only screen and (max-width: 600px) {
+        .loader {
+          width: 15vmin;
+          height: 15vmin;
+        }
+
+        .loading-text {
+          font-size: 4vmin;
+        }
+      }
+
+      .content {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease-in;
+      }
+
+      .content.loaded {
+        visibility: visible;
+        opacity: 1;
+      }
+    </style>
+
+    <div id="loading-overlay" class="loading-overlay">
+      <div class="loader-container">
+        <div class="loader"></div>
+        <div class="loading-text">Loading...</div>
+      </div>
     </div>
 
-    <header>
-      <a href="/"><img src="/assets/logo.svg" alt="Pcademy Logo" /></a>
-    </header>
-
-    <section>
-      <article class="welcome-message">
-        <h1>Welcome Back, <span id="user-id"></span>!</h1>
-      </article>
-
-      <div class="logout-container">
-        <button id="logout-btn">logout</button>
+    <div id="content" class="content">
+      <div class="warning-message">
+        <span
+          >Module is Not Yet Unlocked, Please Finish Earlier Modules
+          First!</span
+        >
+        <button class="close-warning">×</button>
       </div>
-      <article class="modules">
-        <h2 id="module-1"><a>Module 1</a></h2>
-        <h2 id="module-2"><a>Module 2</a></h2>
-        <h2 id="module-3"><a>Module 3</a></h2>
-        <h2 id="module-4"><a>Module 4</a></h2>
-      </article>
-    </section>
 
-    <footer>
-      <div id="footer-logo-notes">
-        <div id="logo">
-          <a href="/"><img src="/assets/logo.svg" alt="Pcademy Logo" /></a>
+      <header>
+        <a href="/"><img src="/assets/logo.svg" alt="Pcademy Logo" /></a>
+      </header>
+
+      <section>
+        <article class="welcome-message">
+          <h1>Welcome Back, <span id="user-id"></span>!</h1>
+        </article>
+
+        <div class="logout-container">
+          <button id="logout-btn">logout</button>
         </div>
-        <div id="footer-notes">
-          <p>
-            Pcademy is a interactive website offering people basic knowledge of
-            Python, a popular programming language used all over the world.
-          </p>
-          <p>Made by David Dewanto.</p>
+        <article class="modules">
+          <h2 id="module-1"><a>Module 1</a></h2>
+          <h2 id="module-2"><a>Module 2</a></h2>
+          <h2 id="module-3"><a>Module 3</a></h2>
+          <h2 id="module-4"><a>Module 4</a></h2>
+        </article>
+      </section>
+
+      <footer>
+        <div id="footer-logo-notes">
+          <div id="logo">
+            <a href="/"><img src="/assets/logo.svg" alt="Pcademy Logo" /></a>
+          </div>
+          <div id="footer-notes">
+            <p>
+              Pcademy is a interactive website offering people basic knowledge
+              of Python, a popular programming language used all over the world.
+            </p>
+            <p>Made by David Dewanto.</p>
+          </div>
         </div>
-      </div>
-      <div id="footer-navigation">
-        <a href="/">Home</a>
-        <a href="/about.html">About</a>
-        <a href="/contact-us.html">Contact Us</a>
-      </div>
-    </footer>
-    <script type="module" src="/scripts/accountDashboard.js"></script>
+        <div id="footer-navigation">
+          <a href="/">Home</a>
+          <a href="/about.html">About</a>
+          <a href="/contact-us.html">Contact Us</a>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>

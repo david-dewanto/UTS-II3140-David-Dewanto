@@ -1,7 +1,8 @@
 import { backendURL } from "./url.js";
 
-const activeModules = [1];
-const availableModules = [1, 2, 3, 4];
+let activeModules = [];
+const availableModules = [1,2,3,4];
+let username;
 
 async function checkAuth() {
     const token = sessionStorage.getItem('token');
@@ -30,14 +31,10 @@ function setActiveModules() {
 async function getUserName() {
     const token = await checkAuth();
     if (!token) return;
-    
-    document.getElementById("user-id").innerHTML = "test";
-}
 
-function checkLogin(){
-  if (sessionStorage.getItem("token")){
-    window.location.href = "account-dashboard.html";
-  }
+    username = sessionStorage.getItem("username")
+
+    document.getElementById("user-id").innerHTML = username;
 }
 
 async function getUserProgress() {
@@ -57,6 +54,12 @@ async function getUserProgress() {
         });
         
         const data = await response.json();
+
+        for(let i = 0; i < data.progress.module; i++){
+          activeModules.push(i+1);
+          console.log(i+1);
+        }
+
         if (data.status === 'success') {
             console.log('User progress:', data.progress);
         }
@@ -82,18 +85,39 @@ function closeWarning() {
   warningMessage?.classList.remove("show");
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const token = await checkAuth();
+async function initialize(){
+  getUserName();
+
+  await getUserProgress();
+  setActiveModules();
+  
+  const closeButton = document.querySelector('.close-warning');
+  closeButton?.addEventListener('click', closeWarning);
+
+  const logoutButton = document.querySelector('#logout-btn');
+  logoutButton.addEventListener('click', handleLogout);
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const token = await checkAuth();
     if (!token) return;
-    
-    await getUserName();
-    setActiveModules();
-    
-    const closeButton = document.querySelector('.close-warning');
-    closeButton?.addEventListener('click', closeWarning);
 
-    const logoutButton = document.querySelector('#logout-btn');
-    logoutButton.addEventListener('click', handleLogout);
+    const content = document.getElementById('content');
+    const loadingOverlay = document.getElementById('loading-overlay');
+    
+    await initialize();
 
-    await getUserProgress();
+    content.classList.add('loaded');
+    loadingOverlay.style.opacity = '0';
+    loadingOverlay.style.transition = 'opacity 0.3s ease-out';
+    
+    setTimeout(() => {
+      loadingOverlay.style.display = 'none';
+      document.body.classList.remove('loading-active');
+    }, 300);
+
+  } catch (error) {
+    console.error('Failed to initialize:', error);
+  }
 });

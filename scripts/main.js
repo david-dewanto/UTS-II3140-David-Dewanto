@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (data.status === "success") {
           sessionStorage.setItem("token", data.token);
+          sessionStorage.setItem("username", email.split('@')[0])
           window.location.href = "account-dashboard.html";
         } else {
           alert("Login failed: " + data.message);
