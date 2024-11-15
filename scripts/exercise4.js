@@ -506,7 +506,7 @@ async function getUserProgress() {
     const data = await response.json();
 
     if (data.progress.module < thisModule) {
-      window.location.href = "/account/login.html";
+      window.location.href = "/account/account-dashboard.html";
       return;
     }
   
