@@ -504,6 +504,11 @@ async function getUserProgress() {
     });
 
     const data = await response.json();
+
+    if (data.progress.module < thisModule) {
+      window.location.href = "/account/login.html";
+      return;
+    }
   
     return data;
   } catch (error) {
