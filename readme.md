@@ -76,8 +76,7 @@ UTS-David-Dewanto-FrontEnd
 ## Memulai Proyek
 
 ### Prasyarat
-- Browser web modern
-- Node.js (untuk pengembangan)
+- Browser
 
 ### Instalasi
 1. Clone repositori
@@ -113,28 +112,8 @@ UTS-David-Dewanto-FrontEnd
 - **Modul Latihan**:
   - Modul 1-4 (`account/exercise/module1-4.html`)
 
-### Pengaturan Tampilan
-- Struktur CSS modular dengan file terpisah untuk komponen berbeda
-- Komponen yang dapat digunakan ulang di `css/reusable/`
-- Implementasi desain responsif
-
-### Skrip
-- File JavaScript modular untuk fungsi yang berbeda
-- Skrip khusus untuk setiap modul latihan
-- Utilitas utama di `main.js`
-- Penanganan URL di `url.js`
-
 ## Deployment
 Proyek ini dikonfigurasi untuk deployment di Vercel dengan file konfigurasi `vercel.json` yang disertakan.
-
-## Informasi Tambahan
-Untuk dokumentasi lengkap dan detail proyek, silakan lihat laporan lengkap yang tersedia di Edunex.
-
-## Kontribusi
-Ini adalah proyek akademik dan tidak terbuka untuk kontribusi.
-
-## Lisensi
-Proyek ini dibuat untuk tujuan akademik. Hak cipta dilindungi.
 
 ---
 
