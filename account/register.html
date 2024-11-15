@@ -1,97 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PCademy - Register</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap"
+    />
     <link rel="stylesheet" href="/css/reusable/main.css" />
     <link rel="stylesheet" href="/css/accountDashboard/register.css" />
     <link rel="stylesheet" href="/css/reusable/header.css" />
-</head>
-<body>
+    <link rel="stylesheet" href="/semantic/dist/components/loader.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="warning-message">
+      <span>Wrong Answer ☹️, Please Try Again</span>
+      <button id="close-btn">x</button>
+    </div>
     <header>
-        <a href="/" id="header-logo">
-            <img src="/assets/logo.svg" width="200" height="auto" />
-        </a>
-        <nav class="header-nav">
-            <p class="main-header"><a href="/about.html">About</a></p>
-            <p class="main-header"><a href="/contact-us.html">Contact Us</a></p>
-        </nav>
+      <a href="/" id="header-logo">
+        <img src="/assets/logo.svg" width="200" height="auto" />
+      </a>
+      <nav class="header-nav">
+        <p class="main-header"><a href="/about.html">About</a></p>
+        <p class="main-header"><a href="/contact-us.html">Contact Us</a></p>
+      </nav>
     </header>
     <section class="register-container">
-        <h1>Create New Account 👨‍🦱👩‍🦰</h1>
-        <form id="registerForm">
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input 
-                    type="email" 
-                    name="email" 
-                    id="email" 
-                    placeholder="Enter your email"
-                    required
-                />
-            </div>
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input 
-                    type="username" 
-                    name="username" 
-                    id="username" 
-                    placeholder="Enter your Username"
-                    required
-                />
-            </div>
-            <div class="input-group">
-                <label for="NIM">NIM</label>
-                <input 
-                    type="NIM" 
-                    name="NIM" 
-                    id="NIM" 
-                    placeholder="Enter your NIM"
-                    required
-                />
-            </div>
-            <div class="input-group">
-                <label for="nama">Full Name</label>
-                <input 
-                    type="nama" 
-                    name="nama" 
-                    id="nama" 
-                    placeholder="Enter your Full Name"
-                    required
-                />
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input 
-                    type="password" 
-                    name="password" 
-                    id="password" 
-                    placeholder="Enter your password"
-                    required
-                />
-                <div class="password-strength"></div>
-            </div>
-            <div class="input-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input 
-                    type="password" 
-                    name="confirmPassword" 
-                    id="confirmPassword" 
-                    placeholder="Confirm your password"
-                    required
-                />
-                <div class="password-match"></div>
-            </div>
-            <button type="submit" class="submit-button">Register</button>
-        </form>
-        <p class="register-link">
-            Already have an account? <a href="login.html">Login here</a>
-        </p>
+      <h1>Create New Account 👨‍🦱👩‍🦰</h1>
+      <form id="registerForm">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input
+            type="username"
+            name="username"
+            id="username"
+            placeholder="Enter your Username"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <label for="NIM">NIM</label>
+          <input
+            type="NIM"
+            name="NIM"
+            id="NIM"
+            placeholder="Enter your NIM"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <label for="nama">Full Name</label>
+          <input
+            type="nama"
+            name="nama"
+            id="nama"
+            placeholder="Enter your Full Name"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        
+        <div class="input-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            placeholder="Confirm your password"
+            required
+          />
+        </div> 
+        <button type="submit" class="submit-button">Register</button>
+      </form>
+      <p class="register-link">
+        Already have an account? <a href="login.html">Login here</a>
+      </p>
     </section>
     <script type="module" src="/scripts/register.js"></script>
-</body>
+    <script src="/semantic/dist/semantic.min.js"></script>
+  </body>
 </html>

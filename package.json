@@ -10,6 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
     "firebase": "^11.0.1",
     "fomantic-ui": "^2.9.3",
     "jquery": "^3.7.1",
