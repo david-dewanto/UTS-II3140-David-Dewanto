@@ -5,43 +5,54 @@ NIM  : 18222027
 
 Website PCademy - Sebuah website interaktif untuk pembelajaran pengenalan komputasi
 
-HTML + CSS + Java Script -> Laporan Lengkap dapat Dilihat pada Edunex
+HTML + CSS + Java Script (Front-End) -> Laporan Lengkap dapat Dilihat pada Edunex
 
 
-Struktur Kode
-UTS-David-Dewanto/
-│
+UTS-David-Dewanto-FrontEnd
 ├── about.html
-├── contact-us.html
-├── index.html
-├── readme.md
-│
-├── account/
+├── account
 │   ├── account-dashboard.html
-│   └── exercise/
-│       └── module1.html
-│
-├── assets/
+│   ├── exercise
+│   │   ├── module1.html
+│   │   ├── module2.html
+│   │   ├── module3.html
+│   │   └── module4.html
+│   ├── login.html
+│   └── register.html
+├── assets
 │   ├── arrow.svg
 │   ├── features-hand.svg
 │   ├── features-money.svg
 │   ├── features-speedometer.svg
+│   ├── google_icon.svg
 │   └── logo.svg
-│
-├── css/
-│   ├── accountDashboard/
-│   │   └── accountDashboard.css
-│   ├── exercise/
+├── contact-us.html
+├── css
+│   ├── accountDashboard
+│   │   ├── accountDashboard.css
+│   │   ├── login.css
+│   │   └── register.css
+│   ├── exercise
 │   │   └── exercise.css
-│   ├── homePage/
+│   ├── homePage
 │   │   └── homePage.css
-│   └── reusable/
+│   └── reusable
 │       ├── footer.css
 │       ├── header.css
 │       ├── main.css
 │       └── others.css
-│
-└── scripts/
-    ├── accountDashboard.js
-    ├── exercise.js
-    └── homePage.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── readme.md
+├── scripts
+│   ├── accountDashboard.js
+│   ├── exercise1.js
+│   ├── exercise2.js
+│   ├── exercise3.js
+│   ├── exercise4.js
+│   ├── homePage.js
+│   ├── main.js
+│   ├── register.js
+│   └── url.js
+└── vercel.json
