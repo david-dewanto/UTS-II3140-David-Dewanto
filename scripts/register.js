@@ -6,6 +6,68 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmPasswordInput = document.getElementById("confirmPassword");
   const passwordStrengthDiv = document.querySelector(".password-strength");
   const passwordMatchDiv = document.querySelector(".password-match");
+  const nimInput = document.getElementById("NIM");
+  const usernameInput = document.getElementById("username");
+
+  if (nimInput) {
+    const nimValidationDiv = document.createElement("div");
+    nimValidationDiv.className = "nim-validation";
+    nimInput.parentNode.appendChild(nimValidationDiv);
+  }
+
+  if (usernameInput) {
+    const usernameValidationDiv = document.createElement("div");
+    usernameValidationDiv.className = "username-validation";
+    usernameInput.parentNode.appendChild(usernameValidationDiv);
+  }
+
+  const checkNIM = (nim) => {
+    const nimValidationDiv = document.querySelector(".nim-validation");
+    const isValid = /^\d{8}$/.test(nim);
+
+    if (nimValidationDiv) {
+      if (!isValid) {
+        nimValidationDiv.innerHTML = `
+          <div style="color: #ff4444; margin-top: 5px; background-color:white; font-weight:600">
+            Input valid NIM
+          </div>
+        `;
+      } else {
+        nimValidationDiv.innerHTML = ``;
+      }
+    }
+    return isValid;
+  };
+
+  const checkUsername = (username) => {
+    const usernameValidationDiv = document.querySelector(".username-validation");
+    const isValidFormat = /^[A-Za-z0-9_-]{1,8}$/.test(username);
+
+    if (usernameValidationDiv) {
+      if (!isValidFormat) {
+        usernameValidationDiv.innerHTML = `
+          <div style="color: #ff4444; margin-top: 5px; background-color:white; font-weight:600">
+            Username must be 1-8 characters, using only letters, numbers, underscore (_) or hyphen (-)
+          </div>
+        `;
+      } else {
+        usernameValidationDiv.innerHTML = ``;
+      }
+    }
+    return isValidFormat;
+  };
+
+  if (nimInput) {
+    nimInput.addEventListener("input", () => {
+      checkNIM(nimInput.value);
+    });
+  }
+
+  if (usernameInput) {
+    usernameInput.addEventListener("input", () => {
+      checkUsername(usernameInput.value);
+    });
+  }
 
   const checkPasswordStrength = (password) => {
     let strength = 0;
@@ -51,8 +113,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (passwordInput.value === confirmPasswordInput.value) {
       passwordMatchDiv.innerHTML = `
-        <div style="color: #00f700; margin-top: 5px; background-color:white; font-weight:600">
-          Passwords Match
+        <div style="color: #c7c5c5; margin-top: 5px; background-color:white; font-weight:600">
+          All Good :) Password Match
         </div>
       `;
     } else {
@@ -89,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
           break;
         case 4:
           strengthText = "Strong";
-          strengthColor = "#00f700";
+          strengthColor = "#008f00";
           break;
       }
 
@@ -124,6 +186,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
       const confirmPassword = document.getElementById("confirmPassword").value;
+      const nim = document.getElementById("NIM").value;
+      const username = document.getElementById("username").value;
 
       if (password !== confirmPassword) {
         alert("Passwords do not match!");
@@ -154,6 +218,9 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify({
             email: email,
             password: password,
+            nim:nim,
+            username:username,
+            timestamp: new Date().toISOString()
           }),
         });
 
@@ -176,4 +243,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  
 });

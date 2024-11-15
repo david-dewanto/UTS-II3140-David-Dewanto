@@ -116,6 +116,22 @@ body {
   background-color: white;
 }
 
+.username-validation{
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  text-align: left;
+  color: #5f6368;
+  background-color: white;
+}
+
+.nim-validation{
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  text-align: left;
+  color: #5f6368;
+  background-color: white;
+}
+
 @media only screen and (max-width: 600px) {
   .register-container {
     margin: 8vh 1rem;
