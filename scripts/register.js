@@ -11,10 +11,10 @@ function loader() {
   const submitButton = document.querySelector(".submit-button");
   if (!submitButton) return;
 
-  const loaderHTML = `Sign In
+  const loaderHTML = `Register
     <div class="ui segment">
       <div class="ui active inverted dimmer">
-        <div class="ui text loader" style="background-color: transparent; z-index:9500; color:black;">Loading...</div>
+        <div class="ui text loader" style="position: fixed; background-color: transparent; z-index:9500; color:black;">Loading...</div>
       </div>
     </div>
   `;
@@ -35,15 +35,16 @@ function resetLoader() {
 
 function showWarning(color) {
   const warningMessage = document.querySelector(".warning-message");
-  
-  if (color === "#ff7d7d") {
+  const warningMessageBtn = document.querySelector("#close-btn")
+  warningMessage?.classList.add("show");
+  warningMessage.style.backgroundColor = color;
+  if (color == "#ff7d7d") {
     warningMessage.style.color = "white";
+    warningMessageBtn.style.color = "white";
   } else {
     warningMessage.style.color = "black";
+    warningMessageBtn.style.color = "black";
   }
-
-  warningMessage.style.backgroundColor = color;
-  warningMessage?.classList.add("show");
   const warningMessageSpan = document.querySelector(".warning-message span");
   warningMessageSpan.style.backgroundColor = color;
 }

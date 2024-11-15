@@ -356,12 +356,15 @@ function backActivePart() {
 
 function showWarning(color) {
   const warningMessage = document.querySelector(".warning-message");
+  const warningMessageBtn = document.querySelector("#close-btn")
   warningMessage?.classList.add("show");
   warningMessage.style.backgroundColor = color;
   if (color == "#ff7d7d") {
     warningMessage.style.color = "white";
+    warningMessageBtn.style.color = "white";
   } else {
-    warningMessage.style.color = "black;";
+    warningMessage.style.color = "black";
+    warningMessageBtn.style.color = "black";
   }
   const warningMessageSpan = document.querySelector(".warning-message span");
   warningMessageSpan.style.backgroundColor = color;
