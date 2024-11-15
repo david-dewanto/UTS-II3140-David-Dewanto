@@ -4,3 +4,4 @@ semantic/src/
 semantic/tasks/
 semantic/gulpfile.js
 .env
+scripts/url.js
