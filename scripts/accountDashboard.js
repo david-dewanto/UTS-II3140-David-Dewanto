@@ -93,15 +93,15 @@ async function getUserProgress() {
 
     for (let i = 0; i < data.progress.module; i++) {
       activeModules.push(i + 1);
-      console.log(i + 1);
+      // console.log(i + 1);
     }
 
     if (data.status === "success") {
-      console.log("User progress:", data.progress);
+      // console.log("User progress:", data.progress);
     }
     return data;
   } catch (error) {
-    console.error("Error getting progress:", error);
+    // console.error("Error getting progress:", error);
     throw error;
   }
 }
@@ -151,7 +151,7 @@ async function getUserData() {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error getting user data:", error);
+    // console.error("Error getting user data:", error);
     throw error;
   }
 }
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.body.classList.remove("loading-active");
     }, 300);
   } catch (error) {
-    console.error("Failed to initialize:", error);
+    // console.error("Failed to initialize:", error);
     window.location.href = "/account/login.html";
   }
 });

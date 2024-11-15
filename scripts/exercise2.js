@@ -24,7 +24,7 @@ async function initializeExercise() {
       maxActiveSubpart = activeSubpart;
     }
   } catch (error) {
-    console.error("Error initializing exercise:", error);
+    // console.error("Error initializing exercise:", error);
   }
 }
 
@@ -453,7 +453,7 @@ async function checkMobile() {
       setActivePart();
     }
   } catch (error) {
-    console.error('Error in checkMobile:', error);
+    // console.error('Error in checkMobile:', error);
   }
 }
 
@@ -477,7 +477,7 @@ async function saveUserProgress(module, part, subpart) {
     });
     return await response.json();
   } catch (error) {
-    console.error("Error saving progress:", error);
+    // console.error("Error saving progress:", error);
     throw error;
   }
 }
@@ -502,7 +502,7 @@ async function getUserProgress() {
   
     return data;
   } catch (error) {
-    console.error("Error getting progress:", error);
+    // console.error("Error getting progress:", error);
     throw error;
   }
 }
@@ -530,7 +530,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       checkMobile();
       setActivePart();
     } else {
-      console.error(`Content not found for key: ${contentKey}`);
+      // console.error(`Content not found for key: ${contentKey}`);
     }
 
     const closeButton = document.querySelector("#close-btn");
@@ -538,6 +538,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       closeButton.addEventListener("click", closeWarning);
     }
   } catch (error) {
-    console.error("Error in DOMContentLoaded:", error);
+    // console.error("Error in DOMContentLoaded:", error);
   }
 });

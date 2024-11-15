@@ -104,7 +104,7 @@ forgotPasswordForm.addEventListener('submit', async (e) => {
           showWarning("#ff7d7d");
         }
     } catch (error) {
-        console.error('Error:', error);
+        // console.error('Error:', error);
     } finally{
       resetLoader();
     }
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loginForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       loader();
-      console.log("Form submitted");
+      // console.log("Form submitted");
 
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
@@ -135,10 +135,10 @@ document.addEventListener("DOMContentLoaded", () => {
           }),
         });
 
-        console.log("Response status:", response.status);
+        // console.log("Response status:", response.status);
 
         const data = await response.json();
-        console.log("Response data:", data);
+        // console.log("Response data:", data);
 
         if (data.status === "success") {
           sessionStorage.setItem("token", data.token);
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       } catch (error) {
-        console.error("Error details:", error);
+        // console.error("Error details:", error);
       } finally{
         resetLoader();
       }
